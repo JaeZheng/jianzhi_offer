@@ -6,7 +6,7 @@
 解决思路:
 第一种：暴力法，逐个遍历
 第二种：暴力法，逐行二分查找
-第三种：从左下或右上开始找。比如左上：如果<target，按行递增，如果>target，按列递减。
+第三种：从左下或右上开始找。比如左下：如果<target，按行递增，如果>target，按列递减。
 弟四种：两次(按行+按列)二分查找。先按行二分查找，找到<=target的值，再按列二分查找。
 """
 
@@ -24,7 +24,7 @@ class Solution:
         if cols == 0:
             return False
         i, j = rows-1, 0
-        while i >= 0 and j <= rows-1:
+        while i >= 0 and j <= cols-1:
             if array[i][j] > target:
                 i -= 1
             elif array[i][j] < target:
