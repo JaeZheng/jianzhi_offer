@@ -10,19 +10,52 @@
 
 
 # -*- coding:utf-8 -*-
+# 解法二
+# class Solution:
+#     # s 源字符串
+#     def replaceSpace(self, s):
+#         # write code here
+#         result = []
+#         for ch in s:
+#             if ch != " ":
+#                 result.append(ch)
+#             else:
+#                 result.append("%")
+#                 result.append("2")
+#                 result.append("0")
+#         return "".join(result)
+
+
+# 解法三
 class Solution:
     # s 源字符串
     def replaceSpace(self, s):
-        # write code here
-        result = []
+        num_of_space = 0
+        # 遍历计算空格数目
         for ch in s:
-            if ch != " ":
-                result.append(ch)
+            if ch == " ":
+                num_of_space += 1
+        new_length = len(s)+num_of_space*2
+        old_length = len(s)
+        result = [" " for _ in range(new_length)]
+        # 无空格，则直接返回
+        if new_length == old_length:
+            return s
+        # 扩展数组
+        for i in range(0, new_length-old_length):
+            s += " "
+        old_index = old_length - 1
+        while old_index >= 0:
+            if s[old_index] != " ":
+                result[old_index+2*num_of_space] = s[old_index]
+                old_index -= 1
             else:
-                result.append("%")
-                result.append("2")
-                result.append("0")
-        return "".join(result)
+                result[old_index+2*num_of_space] = '0'
+                result[old_index-1+2*num_of_space] = '2'
+                result[old_index-2+2*num_of_space] = '%'
+                old_index -= 1
+                num_of_space -= 1
+        return ''.join(result)
 
 
 S = Solution()
