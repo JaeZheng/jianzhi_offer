@@ -21,13 +21,17 @@ class Solution:
     def reConstructBinaryTree(self, pre, tin):
         if len(pre) == 0 or len(tin) == 0:
             return None
+        # 树的根节点是前序遍历数组的第一个值
         root = TreeNode(pre[0])
+        # 找到中序遍历数组中根节点的位置
         root_idx = 0
         for i in tin:
             if i == root.val:
                 break
             root_idx += 1
+        # 对左子树进行递归遍历
         root.left = self.reConstructBinaryTree(pre[1:1+root_idx], tin[0:root_idx])
+        # 对右子树进行递归遍历
         root.right = self.reConstructBinaryTree(pre[root_idx+1:], tin[root_idx+1:])
         return root
 
