@@ -17,3 +17,10 @@ class Solution:
             num1 = tmp & 0xFFFFFFFF
         # python整型无限大，需要检查正负数
         return num1 if num1 >> 31 == 0 else num1 - 4294967296
+
+
+class Solution:
+    def Add(self, num1, num2):
+        while num2:
+            num1, num2 = (num1^num2)&0xFFFFFFFF, ((num1&num2)<<1)&0xFFFFFFFF
+        return num1 if num1 <= 0x7FFFFFFF else ~(num1^0xFFFFFFFF)
