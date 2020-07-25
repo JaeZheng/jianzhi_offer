@@ -17,7 +17,10 @@ class Solution:
         if len(self.stack_2) <= 0:
             for i in range(len(self.stack_1)):
                 self.stack_2.append(self.stack_1.pop())
-        return self.stack_2.pop()
+        if self.stack_2:
+            return self.stack_2.pop()
+        else:
+            return -1
 
 S = Solution()
 for i in range(3):
